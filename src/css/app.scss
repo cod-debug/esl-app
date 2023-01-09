@@ -1,0 +1,78 @@
+// app global css in SCSS form
+.w-100 {
+  width: 100%;
+}
+.top-nav {
+  width: 100% !important;
+}
+.top-nav ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+}
+
+.top-nav ul li {
+  //   display: inline-block;
+  width: 100%;
+}
+.top-nav ul li a {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.top-nav ul li a:hover,
+.top-nav ul li a.active {
+  background-color: #004aad;
+  color: white !important;
+  transition: 0.5s;
+  letter-spacing: 5px;
+}
+.top-nav ul li a:not(:hover) {
+  transition: 0.5s;
+}
+
+.page-header {
+  //   border: 1px solid black;
+  width: 100%;
+  // flex-direction: column;
+  // position: absolute;
+  background: url("~assets/img/upper-bg.jpg") no-repeat;
+  // background: url("~assets/img/esl-logo1.png") no-repeat;
+  background-size: cover;
+  background-position-x: right;
+  background-position: fixed;
+  background-color: #004aad;
+  background-blend-mode: screen;
+  //   background-color: grey;
+}
+
+.text-custom-nav {
+  font-size: 13pt;
+  cursor: pointer;
+}
+
+.div-description {
+  width: 90vh;
+}
+
+.bg-custom-gradient {
+  background: rgb(255,255,255);
+  background: linear-gradient(193deg,#eff4ee 0%, #80c3d0 100%);
+}
+
+.w-50 {
+  width: 50%;
+}
+
+
+.q-table__top,
+thead tr:first-child th{
+  /* bg color is important for th; just specify one */
+  background-color: $blue-13;
+  color: white;
+}
