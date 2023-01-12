@@ -9,20 +9,14 @@
 
             <q-separator />
 
-            <q-form @submit="saveSched" ref="add_sched_form">
+            <q-form @submit="saveSched" ref="add_sched_form" greedy>
                 <q-card-section>
                     <div class="row">
-                        <div class="col-12 col-md-12 q-pa-sm">
-                            <label>Start Date</label>
+                        <div class="col-12 col-md-6 q-pa-sm">
+                            <q-input label="Start Date & Time: *" type="datetime-local" v-model="date_from" stack-label  :rules="[val => !!val || 'Field is required']" />
                         </div>
                         <div class="col-12 col-md-6 q-pa-sm">
-                            <q-date v-model="date_from" mask="YYYY-MM-DD HH:mm" color="blue" />
-                        </div>
-                        <div class="col-12 col-md-6 q-pa-sm">
-                            <q-time v-model="date_from" mask="YYYY-MM-DD HH:mm" color="blue" />
-                        </div>
-                        <div class="col-12 col-md-4 q-pa-sm">
-                            <q-input label="Date To *" type="datetime-local" v-model="date_to" stack-label disable  :rules="[val => !!val || 'Field is required']" />
+                            <q-input label="End Date & Time: *" type="datetime-local" v-model="date_to" stack-label disable :rules="[val => !!val || 'Field is required']" />
                         </div>
                         <div class="col-12 q-pa-sm">
                             <q-input label="Lesson: " v-model="lesson" type="text"  :rules="[val => !!val || 'Field is required']" />
@@ -67,7 +61,12 @@
                 if(newVal){
                     let d2 = new Date(newVal);
                     d2.setMinutes(new Date(newVal).getMinutes() + 30);
-                    this.date_to = d2.toLocaleDateString();
+                    let year = d2.getFullYear();
+                    let month = d2.getMonth() + 1 < 10 ? "0" + (d2.getMonth() + 1) : d2.getMonth() + 1;
+                    let date = d2.getDate() < 10 ? "0" + d2.getDate() : d2.getDate();
+                    let converted_date = `${year}-${month}-${date}T${d2.toLocaleTimeString([], {hour: "2-digit", minute: "2-digit", hour12:false}).substring(0, 5)}`;
+
+                    this.date_to = converted_date;
                 }
             }
         },
@@ -76,8 +75,8 @@
         },
         methods: {
             saveSched(){
-                let current_list = localStorage.getItem('_schedules');
-                console.log(this.date_from);
+                let current_list = JSON.parse(localStorage.getItem('_schedules'));
+                
 
             },
             closeModal(){
