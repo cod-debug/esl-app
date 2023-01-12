@@ -10,7 +10,7 @@
                     </q-item-section>
             
                     <q-item-section side>
-                        <q-btn label="add schedule" icon="edit_calendar" glossy color="light-blue" class="text-white" />
+                        <q-btn label="add schedule" @click="show_add_schedule_modal = true" icon="edit_calendar" glossy color="light-blue" class="text-white" />
                     </q-item-section>
                   </q-item>
             </q-card-section>
@@ -70,15 +70,21 @@
                     </div>
                 </div>
             </q-card-section>
+            <modal-add-schedule ref="add_schedule_modal" />
         </q-card>
     </div>
 </template>
 
 <script>
+    import AddSchedule from './Modal/AddSchedule.vue';
     export default {
         name: "schedule_index",
+        components: {
+            modalAddSchedule: AddSchedule,
+        },
         data: () => ({
             title: "SCHEDULE",
+            show_add_schedule_modal: false,
             selected_date: null,
             sched_col: [
                 { name: 'id', align: 'center', label: 'ID', field: 'id', sortable: true },
